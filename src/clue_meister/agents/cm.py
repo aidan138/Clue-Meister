@@ -1,4 +1,4 @@
-from base_cm import BaseAgent
+from clue_meister.agents.base_cm import BaseAgent
 from typing import Dict, List, Tuple, Optional
 from datetime import datetime
 import json
