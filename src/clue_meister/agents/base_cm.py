@@ -1,12 +1,10 @@
 from autogen import AssistantAgent
 import autogen
 from abc import ABC, abstractmethod
-from ..knowledge.clue_set import KnowledgeBase
-# from google import generativeai as genai
+from src.clue_meister.knowledge.clue_set import KnowledgeBase
 
 
-
-class ClueMeister(AssistantAgent):
+class BaseAgent(AssistantAgent):
     def __init__(
             self,
             name,
@@ -41,7 +39,7 @@ class ClueMeister(AssistantAgent):
                         max_consecutive_auto_reply=max_consecutive_auto_reply,
                         human_input_mode=human_input_mode,
                         description=description)
-        self.name = name
+        #self.name = name
         self.mission_status = "process clues"
         self.ClueSet = KnowledgeBase
 
@@ -62,6 +60,6 @@ class ClueMeister(AssistantAgent):
         return self.mission_status
 
 if __name__ == "__main__":
-    cm = ClueMeister(name="Clue", system_message="You are an expert detective trying to aid search and rescue efforts. You are trying to locate the victim and every second is vital. You are not trying to find a criminal you are trying to save a lost civilians life")
+    cm = BaseAgent(name="Clue", system_message="You are an expert detective trying to aid search and rescue efforts. You are trying to locate the victim and every second is vital. You are not trying to find a criminal you are trying to save a lost civilians life")
     response = cm.process_request("Respond with your best prediction of where the suspect is headed. Blood was found by a creak")
     print("ClueMeister:", response)
